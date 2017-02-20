@@ -18,10 +18,10 @@ import com.google.common.io.CharStreams;
 
 /**
  * <h3>Amazon S3 File Downloader</h3>
- * <br/><br/>(c) 2015 Sport Trades Ltd
+ * (c) 2015 Sport Trades Ltd
  * 
- * @author Jaskirat M.S. Rajasansir
- * @version 1.0.0
+ * @author Jas Rajasansir
+ * @version 1.1.0
  * @since 2 Sep 2015
  */
 public class AmazonS3FileDownloader {

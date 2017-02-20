@@ -10,7 +10,7 @@ import com.buabook.amazon.pojos.UploadContent;
  * <h3>Amazon S3 Upload Interface</h3>
  * (c) 2017 Sport Trades Ltd
  * 
- * @author Jaskirat M.S. Rajasansir
+ * @author Jas Rajasansir
  * @version 1.0.0
  * @since 20 Feb 2017
  */

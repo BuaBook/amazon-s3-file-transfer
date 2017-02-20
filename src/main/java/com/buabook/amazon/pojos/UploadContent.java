@@ -7,7 +7,7 @@ import com.google.common.base.Strings;
  * <p>A simple object to supply file content (as {@link String}) and a file name</p>
  * (c) 2017 Sport Trades Ltd
  * 
- * @author Jaskirat M.S. Rajasansir
+ * @author Jas Rajasansir
  * @version 2.0.0
  * @since 8 Jun 2015
  */

@@ -11,7 +11,7 @@ import com.google.common.base.Strings;
  * <h3>Amazon S3 Connection Object</h3>
  * (c) 2015 Sport Trades Ltd
  * 
- * @author Jaskirat M.S. Rajasansir
+ * @author Jas Rajasansir
  * @version 1.0.0
  * @since 13 Jul 2015
  */

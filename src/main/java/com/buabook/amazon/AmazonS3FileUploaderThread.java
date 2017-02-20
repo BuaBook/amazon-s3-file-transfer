@@ -14,8 +14,8 @@ import com.buabook.amazon.pojos.UploadContent;
  * <p>Processing of each file to upload is handled on a separate daemon thread</p> 
  * (c) 2015 Sport Trades Ltd
  * 
- * @author Jaskirat M.S. Rajasansir
- * @version 1.0.0
+ * @author Jas Rajasansir
+ * @version 1.1.0
  * @since 8 Jun 2015
  */
 public class AmazonS3FileUploaderThread extends Thread implements IAmazonS3Uploader {

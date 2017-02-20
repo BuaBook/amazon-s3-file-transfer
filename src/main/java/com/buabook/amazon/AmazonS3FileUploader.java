@@ -20,10 +20,10 @@ import com.google.common.base.Strings;
 
 /**
  * <h3>Amazon S3 File Uploader</h3>
- * <br/><br/>(c) 2015 Sport Trades Ltd
+ * (c) 2015 Sport Trades Ltd
  * 
- * @author Jaskirat M.S. Rajasansir
- * @version 1.0.0
+ * @author Jas Rajasansir
+ * @version 1.1.0
  * @since 4 Sep 2015
  */
 public class AmazonS3FileUploader implements IAmazonS3Uploader {
