@@ -2,6 +2,8 @@
 
 This library provides file upload and download wrapper classes for the Amazon AWS SDK.
 
+[![Build Status](https://travis-ci.org/BuaBook/amazon-s3-file-transfer.svg?branch=master)](https://travis-ci.org/BuaBook/amazon-s3-file-transfer)
+[![Coverage Status](https://coveralls.io/repos/github/BuaBook/amazon-s3-file-transfer/badge.svg?branch=master)](https://coveralls.io/github/BuaBook/amazon-s3-file-transfer?branch=master)
 
 ## Uploading
 
@@ -10,7 +12,7 @@ We wrap a `TransferManager` with the following features:
 * Application environment path prefix
    * This allows multiple environments to use the same S3 bucket but data separation at the root level of the bucket between them. The environment can be specified as any String.
 * Automatic content length calculation
-* File downloaded as String
+* Files downloaded straight to String
 
 Uploading can be performed in 3 ways, each allow the caller to do more configuration:
 
