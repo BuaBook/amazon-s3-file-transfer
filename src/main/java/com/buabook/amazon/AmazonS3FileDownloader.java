@@ -51,17 +51,23 @@ public class AmazonS3FileDownloader {
 		if(Strings.isNullOrEmpty(filePath))
 			throw new IllegalArgumentException("File path to download is empty");
 		
+		String fullFilePath = s3Connection.getAppEnvironment() + "/" + filePath;
+		
+		log.info("Attempting to download file from S3 [ Bucket: {} ] [ File: {} ]", bucketName, fullFilePath);
+		
 		S3Object file = null;
 		
 		try {
-			file = s3Connection.getConnection().getObject(new GetObjectRequest(bucketName, s3Connection.getAppEnvironment() + "/" + filePath));
+			file = s3Connection.getConnection().getObject(new GetObjectRequest(bucketName, fullFilePath));
 		} catch (AmazonServiceException e) {
-			log.error("Amazon rejected our download request! [ Error Code: " + e.getErrorCode() + " ] Error - " + e.getMessage());
+			log.error("Amazon rejected our download request! [ Error Code: {} ] Error - {}", e.getErrorCode(), e.getMessage());
 			throw new FileUploadDownloadFailedException(e);
 		} catch(AmazonClientException e) {
-			log.error("Internal error while attempting to download from Amazon! Error - " + e.getMessage());
+			log.error("Internal error while attempting to download from Amazon! Error - {}", e.getMessage());
 			throw new FileUploadDownloadFailedException(e);
-		} 
+		}
+		
+		log.info("File downloaded successfully [ Bucket: {} ] [ File: {} ]", bucketName, fullFilePath);
 		
 		return file;
 	}
@@ -75,7 +81,7 @@ public class AmazonS3FileDownloader {
 			fileString = CharStreams.toString(isr);
 			
 		} catch (IOException e) {
-			log.error("Failed to convert file data to string. Error - " + e.getMessage());
+			log.error("Failed to convert file data to string. Error - {}", e.getMessage());
 		}
 		
 		return fileString;

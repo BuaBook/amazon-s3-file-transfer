@@ -34,7 +34,7 @@ public class AmazonS3FileUploader implements IAmazonS3Uploader {
 	
 	private final AmazonS3Connection s3Connection;
 	
-	private final TransferManager transferManager;
+	protected final TransferManager transferManager;
 	
 	
 	public AmazonS3FileUploader(AmazonS3Connection s3Connection, String bucketName) throws IllegalArgumentException {
@@ -51,7 +51,7 @@ public class AmazonS3FileUploader implements IAmazonS3Uploader {
 															.withS3Client(s3Connection.getConnection())
 															.build();
 		
-		log.info("Creating new Amazon S3 File Uploader [ Bucket Name: " + bucketName + " ]");
+		log.info("Creating new Amazon S3 File Uploader [ Bucket Name: {} ]", bucketName);
 	}
 	
 	
@@ -76,7 +76,7 @@ public class AmazonS3FileUploader implements IAmazonS3Uploader {
 		try {
 			upload(filePath, fileData);
 		} catch(FileUploadDownloadFailedException | RuntimeException e) {
-			log.info("[ Exception Suppressed ] " + e.getMessage(), e);
+			log.info("[ Exception Suppressed ] {}", e.getMessage(), e);
 		}
 	}
 	
@@ -91,23 +91,24 @@ public class AmazonS3FileUploader implements IAmazonS3Uploader {
 		
 		long uploadFileLength = fileToUpload.getMetadata().getContentLength();
 		
-		log.info("Attempting to upload object to Amazon S3 [ Expected File Name: " + fileToUpload.getKey() + " ] " + 
-					(uploadFileLength == 0 ? "[ No Content-Length Specified ]" : "[ Length: " + fileToUpload.getMetadata().getContentLength() + " bytes ]"));
+		log.info(	"Attempting to upload object to Amazon S3 [ Expected File Name: {} ] [ Length: {} ]",
+					fileToUpload.getKey(),
+					uploadFileLength == 0 ? "No Content-Length Specified" : fileToUpload.getMetadata().getContentLength() + " bytes");
 		
 		try {
 			Upload upload = transferManager.upload(fileToUpload);
 			upload.waitForCompletion();
 		} catch (AmazonServiceException e) {
-			log.error("Amazon rejected our uploader request! [ Error Code: " + e.getErrorCode() + " ] Error - " + e.getMessage());
+			log.error("Amazon rejected our uploader request! [ Error Code: {} ] Error - {}", e.getErrorCode(), e.getMessage());
 			throw e;
 		} catch(AmazonClientException e) {
-			log.error("Internal error while attempting to upload to Amazon! Error - " + e.getMessage());
+			log.error("Internal error while attempting to upload to Amazon! Error - {}", e.getMessage());
 			throw e;
 		} catch (InterruptedException e) {
-			log.warn("Thread was interrupted waiting for upload confirmation. Error - " + e.getMessage());
+			log.warn("Thread was interrupted waiting for upload confirmation. Error - {}", e.getMessage());
 		}
 		
-		log.info("Object successfully uploaded to Amazon S3 [ File Name: " + fileToUpload.getKey() + " ]");
+		log.info("Object successfully uploaded to Amazon S3 [ File Name: {} ]", fileToUpload.getKey());
 	}
 
 	/**

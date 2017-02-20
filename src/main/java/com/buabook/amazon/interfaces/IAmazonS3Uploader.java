@@ -32,7 +32,7 @@ public interface IAmazonS3Uploader {
 		try {
 			upload(dataToUpload);
 		} catch(FileUploadDownloadFailedException | RuntimeException e) {
-			log.info("[ Exception Suppressed ] " + e.getMessage(), e);
+			log.info("[ Exception Suppressed ] {}", e.getMessage(), e);
 		}
 	}
 	

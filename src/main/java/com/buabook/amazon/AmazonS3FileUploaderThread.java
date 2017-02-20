@@ -66,12 +66,12 @@ public class AmazonS3FileUploaderThread extends Thread implements IAmazonS3Uploa
 			UploadContent logToUpload = logsToUpload.poll();
 			
 			if(log.isDebugEnabled())
-				log.debug("Uploading log to Amazon S3 [ Upload Queue Size: " + logsToUpload.size() + " ]");
+				log.debug("Uploading log to Amazon S3 [ Upload Queue Size: {} ]", logsToUpload.size());
 			
 			try {
 				uploader.upload(logToUpload);
 			} catch (FileUploadDownloadFailedException | RuntimeException e) {
-				log.error("Data logging failed. MESSAGE LOST! Error - " + e.getMessage(), e);
+				log.error("Data logging failed. MESSAGE LOST! Error - {}", e.getMessage(), e);
 			}
 		}
 		
@@ -92,4 +92,5 @@ public class AmazonS3FileUploaderThread extends Thread implements IAmazonS3Uploa
 	public synchronized void terminateThread() {
 		timeToTerminate = true;
 	}
+	
 }
