@@ -10,7 +10,7 @@ import com.buabook.amazon.interfaces.IAmazonS3Uploader;
 import com.buabook.amazon.pojos.UploadContent;
 
 /**
- * <h3>Threaded Wrapper for {@link AmazonS3Uploader}</h3>
+ * <h3>Threaded Wrapper for {@link AmazonS3FileUploader}</h3>
  * <p>Processing of each file to upload is handled on a separate daemon thread</p> 
  * (c) 2015 Sport Trades Ltd
  * 
